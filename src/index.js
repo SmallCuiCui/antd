@@ -3,8 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+import {BrowserRouter as Router,Route, Switch, Redirect} from "react-router-dom"
+import {mainRouters} from "./router"
+import {Provider} from "react-redux"
+import store from "./store"
+ReactDOM.render(
+<Provider store={store}>
+	<Router>
+		<Switch>
+			<Route path="/home" component={App}></Route>
+			{
+				mainRouters.map(item => {
+					return <Route key={item.path} path={item.path} component={item.component} />
+				})
+			}
+			<Redirect from="/" to="/home" exact/>
+			<Redirect to="/404" />
+		</Switch>
+	</Router>
+</Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
