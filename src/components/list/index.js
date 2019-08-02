@@ -11,6 +11,7 @@ export default class List extends Component{
 		this.state = {
 			list: [],
 			count: 0,
+			page: 1,
 			columns : [
 				{
 					title: 'name',
@@ -37,7 +38,6 @@ export default class List extends Component{
 	}
 	remove = (id)=>{
 		this.showConfirm(id)
-		
 	}
 	showConfirm = (id)=> {
 		let that = this
@@ -48,7 +48,7 @@ export default class List extends Component{
 				dell(id).then(resp => {
 					if(resp.data.status === 0){
 						message.success("删除成功")
-						that.getData(1,10)
+						that.getData(that.state.page,4)
 					}
 				})
 			},
@@ -79,6 +79,9 @@ export default class List extends Component{
 		})
 	}
 	page(page,pageSize){
+		this.setState({
+			page: page
+		})
 		this.getData(page,pageSize)
 	}
 	goAdd = () =>{
