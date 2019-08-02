@@ -11,7 +11,9 @@ import {homeRoutes} from "./router"
 function App() {
   return (
     <div  className="App">
-     	<Layout>
+			{/* 避免token验证失败时导致强制的页面跳转 */}
+     	{sessionStorage.getItem("token") ?
+			 <Layout>
      		<Switch>
      			{
      				homeRoutes.map(item => {
@@ -20,7 +22,8 @@ function App() {
      			}
      			<Redirect from="/home" to="/home/list" exact/>
      		</Switch>
-     	</Layout>
+			 </Layout> : <Redirect to="/login" />
+			 }
     </div>
   );
 }

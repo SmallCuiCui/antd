@@ -1,16 +1,18 @@
-import Admin from "../components/admin"
 import NotFound from "../components/notfound"
 
 import List from "../components/list"
 import Dashboard from "../components/dashboard"
 import Setting from "../components/setting"
 import Notice from "../components/notice"
+import Login from "../components/login"
+import Add from "../components/add"
 
 export const mainRouters = [
 	{
-		path: "/admin",
-		component: Admin
+		path: "/login",
+		component: Login
 	},
+	
 	{
 		path: "/404",
 		component: NotFound
@@ -20,18 +22,27 @@ export const mainRouters = [
 export const homeRoutes=[
 	{
 		path: "/home/list",
-		component: List
+		component: List,
+		users:["abc","def"]
 	},
 	{
 		path: "/home/dashboard",
-		component: Dashboard
+		component: Dashboard,
+		users:["abc","def"]
 	},
 	{
 		path: "/home/setting",
-		component: Setting
+		component: Setting,
+		users:["abc"]
 	},
 	{
 		path: "/home/notice",
-		component: Notice
+		component: Notice,
+		users:["abc","def"]
+	},
+	{
+		path: "/home/add",
+		component: Add,
+		users:["abc","def"]
 	}
 ]

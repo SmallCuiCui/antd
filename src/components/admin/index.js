@@ -1,8 +1,10 @@
 import React,{Component} from "react"
-import { Layout, Menu, Icon, Dropdown, Badge } from 'antd';
+import { Layout, Menu, Icon, Dropdown, Badge, Popconfirm } from 'antd';
 import {withRouter} from "react-router-dom"
 import {connect} from "react-redux"
+import {Logout} from "../../api"
 const { Header, Content, Sider } = Layout;
+
 
 var mapState = (state)=>({
 	count: state.list.filter(item => !item.read).length
@@ -17,6 +19,18 @@ class Admin extends Component{
 		}
 		this.go = this.go.bind(this)
 	}
+	confirm = (e) => {
+		Logout().then(resp => {
+			if(resp.data.status === 0){
+				sessionStorage.setItem("token","")
+				this.props.history.push("/")
+			}
+		})
+	}
+	
+	cancel = (e) => {
+		// message.error('2');
+	}
 	go({item,key,keyPath, domEvent}){
 		this.props.history.push(key)
 	}
@@ -29,8 +43,16 @@ class Admin extends Component{
 		    <Menu.Item key="/home/setting" onClick={this.go}>
 		      <span>设置</span>
 		    </Menu.Item>
-		   <Menu.Item key="/home/quit" onClick={this.go}>
-		      <span>退出</span>
+		   <Menu.Item key="/home/quit">
+					<Popconfirm
+						title="确认退出吗?"
+						onConfirm={this.confirm}
+						onCancel={this.cancel}
+						okText="Yes"
+						cancelText="No"
+					>
+						 <span>退出</span>
+					</Popconfirm>
 		    </Menu.Item>
 		  </Menu>
 		);
