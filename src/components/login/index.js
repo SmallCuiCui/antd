@@ -10,6 +10,7 @@ class login extends Component{
         getLogin(values.username, values.password).then(resp => {
           if(resp.data.status === 0){
             sessionStorage.setItem("token",resp.data.data.token)
+            sessionStorage.setItem("user",values.username)
             this.props.history.push("/")
           }
         })

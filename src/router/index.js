@@ -23,26 +23,26 @@ export const homeRoutes=[
 	{
 		path: "/home/list",
 		component: List,
-		users:["abc","def"]
+		users:["hyc","mt"]
 	},
 	{
 		path: "/home/dashboard",
 		component: Dashboard,
-		users:["abc","def"]
+		users:["hyc","mt"]
 	},
 	{
 		path: "/home/setting",
 		component: Setting,
-		users:["abc"]
+		users:["hyc"]
 	},
 	{
 		path: "/home/notice",
 		component: Notice,
-		users:["abc","def"]
+		users:["hyc","mt"]
 	},
 	{
 		path: "/home/add",
 		component: Add,
-		users:["abc","def"]
+		users:["hyc","mt"]
 	}
 ]
